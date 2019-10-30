@@ -8,15 +8,17 @@ export class MonthDay {
   constructor(month, day, disambiguation = 'constrain') {
     month = ES.ToInteger(month);
     day = ES.ToInteger(day);
+    disambiguation = ES.ToString(disambiguation);
+    const leapYear = 1972;
     switch (disambiguation) {
       case 'reject':
-        ES.RejectDate(1970, month, day);
+        ES.RejectDate(leapYear, month, day);
         break;
       case 'constrain':
-        ({ month, day } = ES.ConstrainDate(1970, month, day));
+        ({ month, day } = ES.ConstrainDate(leapYear, month, day));
         break;
       case 'balance':
-        ({ month, day } = ES.BalanceDate(1970, month, day));
+        ({ month, day } = ES.BalanceDate(leapYear, month, day));
         break;
       default:
         throw new TypeError('disambiguation should be either reject, constrain or balance');
@@ -36,7 +38,7 @@ export class MonthDay {
     return GetSlot(this, DAY);
   }
 
-  with(dateLike = {}, disambiguation = 'constrain') {
+  with(dateLike, disambiguation = 'constrain') {
     if (!ES.IsMonthDay(this)) throw new TypeError('invalid receiver');
     const props = ES.ValidPropertyBag(dateLike, ['month', 'day']);
     if (!props) {
@@ -46,7 +48,7 @@ export class MonthDay {
     const Construct = ES.SpeciesConstructor(this, MonthDay);
     return new Construct(month, day, disambiguation);
   }
-  plus(durationLike = {}, disambiguation = 'constrain') {
+  plus(durationLike, disambiguation = 'constrain') {
     if (!ES.IsMonthDay(this)) throw new TypeError('invalid receiver');
     const duration = ES.CastDuration(durationLike);
     if (
@@ -70,7 +72,7 @@ export class MonthDay {
     const Construct = ES.SpeciesConstructor(this, MonthDay);
     return new Construct(month, day);
   }
-  minus(durationLike = {}, disambiguation = 'constrain') {
+  minus(durationLike, disambiguation = 'constrain') {
     if (!ES.IsMonthDay(this)) throw new TypeError('invalid receiver');
     const duration = ES.CastDuration(durationLike);
     if (
@@ -100,10 +102,10 @@ export class MonthDay {
     const [one, two] = [this, other].sort(MonthDay.compare);
     let months = two.month - one.month;
     let days = two.days - one.days;
-    let month = two.month;
     if (days < 0) {
       months -= 1;
-      month = one.month + months;
+      let month = one.month + months;
+      // XXX leap days?
       days = ES.DaysInMonth(1970, month) + days;
     }
     const Duration = ES.GetIntrinsic('%Temporal.Duration%');
