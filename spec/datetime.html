@@ -306,9 +306,7 @@
         1. Let _dateTime_ be the *this* value.
         1. If Type(_dateTime_) is not Object or _dateTime_ does not have an [[InitializedTemporalDateTime]] internal slot, then
           1. Throw a *TypeError* exception.
-        1. If ! IsLeapYear(_dateTime_.[[Year]]) is *true*, then
-          1. Return 366.
-        1. Return 365.
+        1. Return ! DaysInYear(_dateTime_.[[Year]]).
       </emu-alg>
     </emu-clause>
 
