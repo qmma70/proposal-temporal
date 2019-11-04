@@ -44,36 +44,12 @@ export function CastAbsolute(arg, aux) {
 }
 
 export function CastDateTime(arg, aux) {
+  if ('string' === typeof arg) {
+    return DateTime.fromString(arg);
+  }
   const DateTime = ES.GetIntrinsic('%Temporal.DateTime%');
-  if (HasSlot(arg, YEAR, MONTH, DAY, HOUR, MINUTE, SECOND, MILLISECOND, MICROSECOND, NANOSECOND)) {
+  if (ES.IsDateTime(arg)) {
     return arg;
-  }
-  if (HasSlot(arg, EPOCHNANOSECONDS)) return arg.inTimeZone(aux);
-  if (HasSlot(arg, YEAR, MONTH, DAY) && HasSlot(aux, HOUR, MINUTE, SECOND, MILLISECOND, MICROSECOND, NANOSECOND)) {
-    return new DateTime(
-      GetSlot(arg, YEAR),
-      GetSlot(arg, MONTH),
-      GetSlot(arg, DAY),
-      GetSlot(aux, HOUR),
-      GetSlot(aux, MINUTE),
-      GetSlot(aux, SECOND),
-      GetSlot(aux, MILLISECOND),
-      GetSlot(aux, MICROSECOND),
-      GetSlot(aux, NANOSECOND)
-    );
-  }
-  if (HasSlot(aux, YEAR, MONTH, DAY) && HasSlot(arg, HOUR, MINUTE, SECOND, MILLISECOND, MICROSECOND, NANOSECOND)) {
-    return new DateTime(
-      GetSlot(aux, YEAR),
-      GetSlot(aux, MONTH),
-      GetSlot(aux, DAY),
-      GetSlot(arg, HOUR),
-      GetSlot(arg, MINUTE),
-      GetSlot(arg, SECOND),
-      GetSlot(arg, MILLISECOND),
-      GetSlot(arg, MICROSECOND),
-      GetSlot(arg, NANOSECOND)
-    );
   }
   const props = ES.ValidPropertyBag(arg, [
     'year',
@@ -100,13 +76,6 @@ export function CastDateTime(arg, aux) {
     } = props;
     return new DateTime(year, month, day, hour, minute, second, millisecond, microsecond, nanosecond, 'constrain');
   }
-  if ('string' === typeof arg) {
-    try {
-      return DateTime.fromString(arg);
-    } catch (ex) {}
-  }
-  if ('bigint' === typeof arg || 'number' === typeof arg || Number.isFinite(+arg))
-    return CastAbsolute(arg).inTimeZone(aux);
   throw new RangeError(`invalid datetime ${arg}`);
 }
 
