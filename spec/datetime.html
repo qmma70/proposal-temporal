@@ -97,7 +97,7 @@
       <emu-alg>
         1. Let _one_ be ? ToDateTime(_one_).
         1. Let _two_ be ? ToDateTime(_two_).
-        1. Return DateTimeCompare(_one_, _two_).
+        1. Return ! DateTimeCompare(_one_, _two_).
       </emu-alg>
     </emu-clause>
   </emu-clause>
@@ -264,7 +264,7 @@
         1. Let _dateTime_ be the *this* value.
         1. If Type(_dateTime_) is not Object or _dateTime_ does not have an [[InitializedTemporalDateTime]] internal slot, then
           1. Throw a *TypeError* exception.
-        1. Return ToDayOfWeek(_dateTime_.[[Year]], _dateTime_.[[Month]], _dateTime_.[[Day]]).
+        1. Return ! ToDayOfWeek(_dateTime_.[[Year]], _dateTime_.[[Month]], _dateTime_.[[Day]]).
       </emu-alg>
     </emu-clause>
 
@@ -278,7 +278,7 @@
         1. Let _dateTime_ be the *this* value.
         1. If Type(_dateTime_) is not Object or _dateTime_ does not have an [[InitializedTemporalDateTime]] internal slot, then
           1. Throw a *TypeError* exception.
-        1. Return ToDayOfYear(_dateTime_.[[Year]], _dateTime_.[[Month]], _dateTime_.[[Day]]).
+        1. Return ! ToDayOfYear(_dateTime_.[[Year]], _dateTime_.[[Month]], _dateTime_.[[Day]]).
       </emu-alg>
     </emu-clause>
 
@@ -292,7 +292,7 @@
         1. Let _dateTime_ be the *this* value.
         1. If Type(_dateTime_) is not Object or _dateTime_ does not have an [[InitializedTemporalDateTime]] internal slot, then
           1. Throw a *TypeError* exception.
-        1. Return ToWeekOfYear(_dateTime_.[[Year]], _dateTime_.[[Month]], _dateTime_.[[Day]]).
+        1. Return ! ToWeekOfYear(_dateTime_.[[Year]], _dateTime_.[[Month]], _dateTime_.[[Day]]).
       </emu-alg>
     </emu-clause>
 
@@ -322,7 +322,7 @@
         1. Let _dateTime_ be the *this* value.
         1. If Type(_dateTime_) is not Object or _dateTime_ does not have an [[InitializedTemporalDateTime]] internal slot, then
           1. Throw a *TypeError* exception.
-        1. Return DaysInMonth(_dateTime_.[[Year]], _dateTime_.[[Month]]).
+        1. Return ! DaysInMonth(_dateTime_.[[Year]], _dateTime_.[[Month]]).
       </emu-alg>
     </emu-clause>
 
@@ -448,7 +448,7 @@
         1. If Type(_dateTime_) is not Object or _dateTime_ does not have an [[InitializedTemporalDateTime]] internal slot, then
           1. Throw a *TypeError* exception.
         1. Let _otherDateTime_ be ? ToDateTime(_otherDateTime_).
-        1. If DateTimeCompare(_dateTime_, _otherDateTime_) &lt; 0, then
+        1. If ! DateTimeCompare(_dateTime_, _otherDateTime_) &lt; 0, then
           1. Let _greater_ be _otherDateTime_.
           1. Let _smaller_ be _dateTime_.
         1. Else,
@@ -501,7 +501,7 @@
     </emu-clause>
 
     <emu-clause>
-      <h1>Temporal.DateTime.prototype.inZone ( [ _timeZoneParam_ [ , _disambiguation_ ] ] )</h1>
+      <h1>Temporal.DateTime.prototype.inTimeZone ( [ _timeZoneParam_ [ , _disambiguation_ ] ] )</h1>
       <p>
         The following steps are taken:
       </p>

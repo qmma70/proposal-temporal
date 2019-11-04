@@ -596,6 +596,8 @@
     <emu-clause id=sec-temporal-AddDate aoid=AddDate>
       <h1>AddDate ( _year_, _month_, _day_, _years_, _months_, _days_, _disambiguation_ )</h1>
       <emu-alg>
+        1. Assert: _year_, _month_, _day_, _years_, _months_, and _days_ are integer Number values.
+        1. Assert: _disambiguation_ is one of `"constrain"`, `"balance"`, or `"reject"`.
         1. Let _y_ be _year_ + _years_.
         1. Let _m_ be _month_ + _months_.
         1. Let _intermediate_ be ! BalanceYearMonth(_y_, _m_).
