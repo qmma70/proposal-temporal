@@ -583,15 +583,15 @@
           1. Return ? ParseDateTimeString(_dateTime_).
         1. If Type(_dateTime_) is Object, then
           1. Let _result_ be the new Record {
-            [[Year]]: *undefined*,
-            [[Month]]: *undefined*,
-            [[Day]]: *undefined*,
-            [[Hour]]: *undefined*,
-            [[Minute]]: *undefined*,
-            [[Second]]: *undefined*,
-            [[Millisecond]]: *undefined*,
-            [[Microsecond]]: *undefined*,
-            [[Nanosecond]]: *undefined*,
+              [[Year]]: *undefined*,
+              [[Month]]: *undefined*,
+              [[Day]]: *undefined*,
+              [[Hour]]: *undefined*,
+              [[Minute]]: *undefined*,
+              [[Second]]: *undefined*,
+              [[Millisecond]]: *undefined*,
+              [[Microsecond]]: *undefined*,
+              [[Nanosecond]]: *undefined*
             }.
           1. Let _any_ be *false*.
           1. For each row of <emu-xref href="#table-temporal-datetimelike-properties"></emu-xref>, except the header row, in table order, do
@@ -608,7 +608,7 @@
       </emu-alg>
 
       <emu-table id="table-temporal-datetimelike-properties">
-        <emu-caption>Properties of a DateTimeLike</emu-caption>
+        <emu-caption>Internal slots and properties for DateTime argument objects</emu-caption>
         <table class="real-table">
           <thead>
             <tr>
@@ -720,15 +720,15 @@
           1. Throw a *RangeError* exception.
         1. Let _year_, _month_, _day_, _hour_, _minute_, _second_, _millisecond_, _microsecond_, _nanosecond_ be the respective parts of _dateTime_ interpreted as decimal numbers.
         1. Return the new Record {
-          [[Year]]: _year_,
-          [[Month]]: _month_,
-          [[Day]]: _day_,
-          [[Hour]]: _hour_,
-          [[Minute]]: _minute_,
-          [[Second]]: _second_,
-          [[Millisecond]]: _millisecond_,
-          [[Microsecond]]: _microsecond_,
-          [[Nanosecond]]: _nanosecond_
+            [[Year]]: _year_,
+            [[Month]]: _month_,
+            [[Day]]: _day_,
+            [[Hour]]: _hour_,
+            [[Minute]]: _minute_,
+            [[Second]]: _second_,
+            [[Millisecond]]: _millisecond_,
+            [[Microsecond]]: _microsecond_,
+            [[Nanosecond]]: _nanosecond_
           }.
       </emu-alg>
     </emu-clause>
@@ -753,15 +753,15 @@
           1. If _dateTime_ has an [[InitializedTemporalDateTime]] internal slot, then
             1. Return _dateTime_.
           1. Let _result_ be the new Record {
-            [[Year]]: *undefined*,
-            [[Month]]: *undefined*,
-            [[Day]]: *undefined*,
-            [[Hour]]: *undefined*,
-            [[Minute]]: *undefined*,
-            [[Second]]: *undefined*,
-            [[Millisecond]]: *undefined*,
-            [[Microsecond]]: *undefined*,
-            [[Nanosecond]]: *undefined*,
+              [[Year]]: *undefined*,
+              [[Month]]: *undefined*,
+              [[Day]]: *undefined*,
+              [[Hour]]: *undefined*,
+              [[Minute]]: *undefined*,
+              [[Second]]: *undefined*,
+              [[Millisecond]]: *undefined*,
+              [[Microsecond]]: *undefined*,
+              [[Nanosecond]]: *undefined*
             }.
           1. For each row of <emu-xref href="#table-temporal-datetimelike-properties"></emu-xref>, except the header row, in table order, do
             1. Let _property_ be the Property value of the current row.
